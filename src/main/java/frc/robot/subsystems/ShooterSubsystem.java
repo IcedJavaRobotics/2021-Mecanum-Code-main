@@ -20,7 +20,7 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterSparkA = new Spark(Constants.SHOOTER_SPARK_A);
     shooterSparkB = new Spark(Constants.SHOOTER_SPARK_B);
     shooterSparkA.setInverted(false);
-    shooterSparkB.setInverted(false);
+    shooterSparkB.setInverted(true);
 
   }
 

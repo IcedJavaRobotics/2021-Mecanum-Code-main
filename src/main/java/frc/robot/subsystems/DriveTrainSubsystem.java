@@ -38,7 +38,9 @@ public class DriveTrainSubsystem extends SubsystemBase {
 
   }
 
-  public void mecanumDrive( double X, double Y, double R) {
+  public void mecanumDrive( double R, double Y, double X) {
+
+    System.out.println("DriveTrain 1");
 
     moveMotor( X + Y + R, frontLeft );
     moveMotor( X - Y + R, backLeft );

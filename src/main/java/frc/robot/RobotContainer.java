@@ -8,13 +8,18 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController.Button;
+import frc.robot.commands.ClimberDownCommand;
+import frc.robot.commands.ClimberUpCommand;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.IntakeCommand;
+import frc.robot.commands.OuttakeCommand;
 import frc.robot.commands.ShooterCommand;
+import frc.robot.commands.WinchLiftCommand;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.subsystems.ClimberSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -32,24 +37,42 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+  private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
   XboxController m_driverController = new XboxController(Constants.CONTROLLER);
 
-  JoystickButton a_button = new JoystickButton(m_driverController, 1);
+  //JoystickButton a_button = new JoystickButton(m_driverController, 1);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+
+    System.out.println("1");
+
     // Configure the button bindings
     configureButtonBindings(); {
 
       //a_button.whileHeld( new IntakeCommand(intakeSubsystem) );
       new JoystickButton(m_driverController, Button.kB.value)
-      .whenActive(new IntakeCommand(intakeSubsystem));
+      .whileHeld(new IntakeCommand(intakeSubsystem));
+
+      new JoystickButton(m_driverController, Button.kY.value)
+      .whileHeld(new OuttakeCommand(intakeSubsystem));
 
       new JoystickButton(m_driverController, Button.kA.value)
-      .whenActive(new ShooterCommand(shooterSubsystem));
+      .whileHeld(new ShooterCommand(shooterSubsystem));
+
+      new JoystickButton(m_driverController, Button.kX.value)
+      .whileHeld(new WinchLiftCommand(climberSubsystem));
+
+      new JoystickButton(m_driverController, Button.kBumperLeft.value)
+      .whileHeld(new ClimberDownCommand(climberSubsystem));
+
+      new JoystickButton(m_driverController, Button.kBumperRight.value)
+      .whileHeld(new ClimberUpCommand(climberSubsystem));
+
+      System.out.println("2");
 
     }
 
@@ -57,19 +80,21 @@ public class RobotContainer {
       new RunCommand(() -> driveTrainSubsystem.mecanumDrive(getControllerLeftX(), getControllerRightY(), getControllerRightX()), driveTrainSubsystem)
     );
 
+    System.out.println("3");
+
   }
 
   private double deadZoneMod(double val) {
     if (Math.abs(val) <= Constants.DEADZONE) {
       return 0;
     } else {
-      return val;
+      return ((val -0.2) * 1.25) ;
     }
   }
 
   public double getControllerRightX() {
     if ( m_driverController != null ) {
-      return deadZoneMod(m_driverController.getX(Hand.kLeft));
+      return deadZoneMod(m_driverController.getX(Hand.kRight));
     } else {
       return 0;
     }

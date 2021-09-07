@@ -27,6 +27,18 @@ public class IntakeSubsystem extends SubsystemBase {
 
   }
 
+  public void ballDrop() {
+
+    intakeSpark.set(-Constants.INTAKE_SPEED);
+
+  }
+
+  public void intakeStop() {
+
+    intakeSpark.set(0);
+    
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

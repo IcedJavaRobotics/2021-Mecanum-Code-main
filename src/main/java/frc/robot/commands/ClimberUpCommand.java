@@ -5,17 +5,17 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ClimberSubsystem;
 
-public class IntakeCommand extends CommandBase {
-  /** Creates a new IntakeCommand. */
+public class ClimberUpCommand extends CommandBase {
+  /** Creates a new ClimberUpCommand. */
 
-  private final IntakeSubsystem intakeSubsystem;
+  private final ClimberSubsystem climberSubsystem;
 
-  public IntakeCommand( IntakeSubsystem subsystem ) {
-    intakeSubsystem = subsystem;
+  public ClimberUpCommand( ClimberSubsystem subsystem ) {
+    climberSubsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements( intakeSubsystem );
+    addRequirements( climberSubsystem );
   }
 
   // Called when the command is initially scheduled.
@@ -25,13 +25,13 @@ public class IntakeCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    intakeSubsystem.ballPickup();
+    climberSubsystem.climberUp();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    intakeSubsystem.intakeStop();
+    climberSubsystem.climberStop();
   }
 
   // Returns true when the command should end.
