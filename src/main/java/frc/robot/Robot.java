@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ServoSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 /**
@@ -23,6 +24,7 @@ public class Robot extends TimedRobot {
   public static IntakeSubsystem intakeSubsystem;
   public static DriveTrainSubsystem driveTrainSubsystem;
   public static ShooterSubsystem shooterSubsystem;
+  public static ServoSubsystem servoSubsystem;
 
   private RobotContainer m_robotContainer;
 
