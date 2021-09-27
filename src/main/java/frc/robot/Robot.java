@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ServoSubsystem;
@@ -24,7 +25,9 @@ public class Robot extends TimedRobot {
   public static IntakeSubsystem intakeSubsystem;
   public static DriveTrainSubsystem driveTrainSubsystem;
   public static ShooterSubsystem shooterSubsystem;
+  public static ClimberSubsystem climberSubsystem;
   public static ServoSubsystem servoSubsystem;
+
 
   private RobotContainer m_robotContainer;
 

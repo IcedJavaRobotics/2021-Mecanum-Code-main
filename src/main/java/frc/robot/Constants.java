@@ -36,7 +36,12 @@ public final class Constants {
     //Climber
     public static final int CLIMBER_SPARK_LEFT = 4;
     public static final int CLIMBER_SPARK_RIGHT = 5;
-    public static final int WINCH_SPARK = 6;
+    public static final int WINCH_SPARK = 9; //Not actually plugged in at time of writing
     public static final double CLIMBER_SPEED = .2;
     public static final double WINCH_SPEED = .2;
+
+    //Servo
+    public static final int SERVO = 6;
+    public static final double SERVO_EXTEND = 0.5;
+    public static final double SERVO_RETRACT = 0.0;
 }

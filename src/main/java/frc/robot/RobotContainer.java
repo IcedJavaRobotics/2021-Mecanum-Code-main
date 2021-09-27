@@ -13,6 +13,7 @@ import frc.robot.commands.ClimberUpCommand;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.OuttakeCommand;
+import frc.robot.commands.ServoExtendCommand;
 import frc.robot.commands.ShooterCommand;
 import frc.robot.commands.WinchLiftCommand;
 import frc.robot.subsystems.DriveTrainSubsystem;
@@ -50,8 +51,6 @@ public class RobotContainer {
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
 
-    System.out.println("1");
-
     // Configure the button bindings
     configureButtonBindings(); {
 
@@ -66,6 +65,9 @@ public class RobotContainer {
       .whileHeld(new ShooterCommand(shooterSubsystem));
 
       new JoystickButton(m_driverController, Button.kX.value)
+      .whileHeld(new ServoExtendCommand(servoSubsystem));
+
+      new JoystickButton(m_driverController, Button.kStart.value)
       .whileHeld(new WinchLiftCommand(climberSubsystem));
 
       new JoystickButton(m_driverController, Button.kBumperLeft.value)
@@ -74,15 +76,11 @@ public class RobotContainer {
       new JoystickButton(m_driverController, Button.kBumperRight.value)
       .whileHeld(new ClimberUpCommand(climberSubsystem));
 
-      System.out.println("2");
-
     }
 
     driveTrainSubsystem.setDefaultCommand(
       new RunCommand(() -> driveTrainSubsystem.mecanumDrive(getControllerLeftX(), getControllerRightY(), getControllerRightX()), driveTrainSubsystem)
     );
-
-    System.out.println("3");
 
   }
 

@@ -4,52 +4,35 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.Servo;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpiutil.math.MathUtil;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
-public class ServoSubsystem extends Servo {
-  double m_speed;
-  double m_length;
+public class ServoSubsystem extends SubsystemBase {
 
-  double setPos;
-  double curPos;
+  private Servo shooterServo;
 
-  Servo exampleServo = new Servo(1);
+  public ServoSubsystem() {
+
+     shooterServo = new Servo(Constants.SERVO);
+
+  }
   
-  /** Creates a new ServoSubsystem. */
-  public ServoSubsystem(int channel, int length, int speed) {
-    super(6);
-    setBounds(2.0, 1.8, 1.5, 1.2, 1.0);
-    m_length = length;
-    m_speed = speed;
+  public void ExtendServo() {
+
+      shooterServo.set(Constants.SERVO_EXTEND);
+      System.out.println("servo subsystem");
+
   }
 
-  public void setPosition(double setpoint){
-    setPos = MathUtil.clamp(setpoint, 0, m_length);
-    setSpeed( (setPos/m_length *2)-1);
-  }
+  public void RetractServo() {
 
-  double lastTime = 0;
+      shooterServo.set(Constants.SERVO_RETRACT);
 
-  public void updateCurPos(){
-  double dt = Timer.getFPGATimestamp() - lastTime;
-    if (curPos > setPos + m_speed *dt){
-    curPos -= m_speed *dt;
-    } else if(curPos < setPos - m_speed *dt){
-    curPos += m_speed *dt;
-    }else{
-    curPos = setPos;}
-    }
-    public double getPosition(){
-    return curPos;
-    }
-
-  public boolean isFinished(){
-    return curPos == setPos;
   }
 
   @Override
-
+  public void periodic() {
+    // This method will be called once per scheduler run
+  }
 }
