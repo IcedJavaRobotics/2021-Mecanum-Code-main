@@ -10,7 +10,8 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
-import frc.robot.subsystems.ServoSubsystem;
+import frc.robot.subsystems.LinearServoSubsystem;
+//import frc.robot.subsystems.ServoSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 
 /**
@@ -26,7 +27,8 @@ public class Robot extends TimedRobot {
   public static DriveTrainSubsystem driveTrainSubsystem;
   public static ShooterSubsystem shooterSubsystem;
   public static ClimberSubsystem climberSubsystem;
-  public static ServoSubsystem servoSubsystem;
+  //public static ServoSubsystem servoSubsystem;
+  public static LinearServoSubsystem linearServoSubsystem;
 
 
   private RobotContainer m_robotContainer;

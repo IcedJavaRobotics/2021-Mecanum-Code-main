@@ -13,13 +13,13 @@ import frc.robot.commands.ClimberUpCommand;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.OuttakeCommand;
-import frc.robot.commands.ServoExtendCommand;
+//import frc.robot.commands.ServoExtendCommand;
 import frc.robot.commands.ShooterCommand;
 import frc.robot.commands.WinchLiftCommand;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
-import frc.robot.subsystems.ServoSubsystem;
+//import frc.robot.subsystems.ServoSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -40,7 +40,7 @@ public class RobotContainer {
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   private final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
-  private final ServoSubsystem servoSubsystem = new ServoSubsystem();
+  //private final ServoSubsystem servoSubsystem = new ServoSubsystem();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
 
@@ -64,8 +64,11 @@ public class RobotContainer {
       new JoystickButton(m_driverController, Button.kA.value)
       .whileHeld(new ShooterCommand(shooterSubsystem));
 
-      new JoystickButton(m_driverController, Button.kX.value)
-      .whileHeld(new ServoExtendCommand(servoSubsystem));
+      // new JoystickButton(m_driverController, Button.kX.value)
+      // .whileHeld(new ServoExtendCommand(servoSubsystem));
+
+      //new JoystickButton(m_driverController, Button.kX.value)
+      //.whenHeld
 
       new JoystickButton(m_driverController, Button.kStart.value)
       .whileHeld(new WinchLiftCommand(climberSubsystem));
